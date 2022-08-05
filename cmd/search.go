@@ -16,6 +16,9 @@ var searchCmd = &cobra.Command{
 	Use:   "search",
 	Short: "Search for cards",
 	Run: func(cmd *cobra.Command, args []string) {
+		if len(args) > 0 {
+			name = args[0]
+		}
 		if name != "" {
 			search.GetCardByName(name, databasePath)
 		}
