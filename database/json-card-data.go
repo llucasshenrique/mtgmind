@@ -128,5 +128,6 @@ func (card JsonCardData) ToCard() Card {
 		ColorIdentity: strings.Join(card.ColorIdentity, ","),
 		Keywords:      strings.Join(card.Keywords, ","),
 		Rarity:        card.Rarity,
+		Set:           card.Set,
 	}
 }
