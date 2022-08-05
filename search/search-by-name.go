@@ -8,10 +8,16 @@ import (
 
 func GetCardByName(name string, databasePath string) {
 	var cards [][]string
-	headers := []string{"ID", "Name", "Mana Cost", "Type"}
 	result := searchCardsByName(name, databasePath)
+	headers := []string{"ID", "Name", "Mana Cost", "Type", "Set"}
 	for _, card := range result {
-		cards = append(cards, []string{card.ID, card.Name, card.ManaCost, card.Type})
+		cards = append(cards, []string{
+			card.ID,
+			card.Name,
+			card.ManaCost,
+			card.Type,
+			card.Set,
+		})
 	}
 	RenderTable(headers, cards)
 }
