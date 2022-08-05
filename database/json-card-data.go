@@ -1,5 +1,7 @@
 package database
 
+import "strings"
+
 type ImageUris struct {
 	Small      string `json:"small"`
 	Normal     string `json:"normal"`
@@ -111,4 +113,20 @@ type JsonCardData struct {
 	PennyRank       int         `json:"penny_rank"`
 	Prices          Prices      `json:"prices"`
 	RelatedUris     RelatedUris `json:"related_uris"`
+}
+
+func (card JsonCardData) ToCard() Card {
+	return Card{
+		ID:            card.ID,
+		Name:          card.Name,
+		Type:          card.TypeLine,
+		ManaCost:      card.ManaCost,
+		Cmc:           card.Cmc,
+		Power:         card.Power,
+		Toughness:     card.Toughness,
+		Colors:        strings.Join(card.Colors, ","),
+		ColorIdentity: strings.Join(card.ColorIdentity, ","),
+		Keywords:      strings.Join(card.Keywords, ","),
+		Rarity:        card.Rarity,
+	}
 }

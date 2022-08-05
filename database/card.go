@@ -15,4 +15,5 @@ type Card struct {
 	ColorIdentity string
 	Keywords      string
 	Rarity        string
+	Set           string
 }
