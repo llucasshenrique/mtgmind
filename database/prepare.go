@@ -6,7 +6,6 @@ import (
 	"log"
 	"strings"
 
-	"github.com/llucasshenrique/mtgmind/definitions"
 	"gorm.io/gorm/clause"
 )
 
@@ -28,12 +27,12 @@ func PrepareDatabase(source string, database string, force bool) {
 	}
 }
 
-func OpenJson(path string) []definitions.JsonCardData {
+func OpenJson(path string) []JsonCardData {
 	content, err := ioutil.ReadFile(path)
 	if err != nil {
 		log.Fatal("Error opening file: ", err)
 	}
-	var payload []definitions.JsonCardData
+	var payload []JsonCardData
 	err = json.Unmarshal(content, &payload)
 	if err != nil {
 		log.Fatal("Error unmarshalling json: ", err)
@@ -41,7 +40,7 @@ func OpenJson(path string) []definitions.JsonCardData {
 	return payload
 }
 
-func transformIntoCard(card definitions.JsonCardData) Card {
+func transformIntoCard(card JsonCardData) Card {
 	return Card{
 		ID:            card.ID,
 		Name:          card.Name,
