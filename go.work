@@ -2,8 +2,6 @@ go 1.18
 
 use search
 
-use definitions
-
 use cmd
 
 use database
