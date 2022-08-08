@@ -4,4 +4,6 @@ use search
 
 use cmd
 
+use core
+
 use database

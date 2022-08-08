@@ -5,14 +5,15 @@ import (
 	"io/ioutil"
 	"log"
 
+	"github.com/llucasshenrique/mtgmind/models"
 	"gorm.io/gorm/clause"
 )
 
 func PrepareDatabase(source string, database string, force bool) {
-	var preparedCards []Card
+	var preparedCards []models.Card
 	cardsArray := OpenJson(source)
 	connection := CreateConnection(database)
-	connection.AutoMigrate(&Card{})
+	connection.AutoMigrate(&models.Card{})
 	for _, card := range cardsArray {
 		preparedCards = append(preparedCards, card.ToCard())
 	}

@@ -1,6 +1,10 @@
 package database
 
-import "strings"
+import (
+	"strings"
+
+	"github.com/llucasshenrique/mtgmind/models"
+)
 
 type ImageUris struct {
 	Small      string `json:"small"`
@@ -115,8 +119,8 @@ type JsonCardData struct {
 	RelatedUris     RelatedUris `json:"related_uris"`
 }
 
-func (card JsonCardData) ToCard() Card {
-	return Card{
+func (card JsonCardData) ToCard() models.Card {
+	return models.Card{
 		ID:            card.ID,
 		Name:          card.Name,
 		Type:          card.TypeLine,
