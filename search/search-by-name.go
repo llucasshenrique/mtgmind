@@ -4,6 +4,7 @@ import (
 	"log"
 
 	"github.com/llucasshenrique/mtgmind/database"
+	"github.com/llucasshenrique/mtgmind/models"
 )
 
 func GetCardByName(name string, databasePath string) {
@@ -22,10 +23,10 @@ func GetCardByName(name string, databasePath string) {
 	RenderTable(headers, cards)
 }
 
-func searchCardsByName(name string, databasePath string) []database.Card {
+func searchCardsByName(name string, databasePath string) []models.Card {
 	connection := database.CreateConnection(databasePath)
-	var searchedCard = database.Card{Name: name}
-	var cards []database.Card
+	var searchedCard = models.Card{Name: name}
+	var cards []models.Card
 	search := connection.Where(&searchedCard).Find(&cards)
 	if search.Error != nil {
 		log.Fatal(search.Error)
