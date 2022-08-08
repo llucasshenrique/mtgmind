@@ -14,7 +14,7 @@ func PrepareDatabase(source string, database string, force bool) {
 	cardsArray := OpenJson(source)
 	connection := CreateConnection(database)
 	connection.AutoMigrate(&models.Card{})
-	for _, card := range cardsArray {
+	for _, card := range *cardsArray {
 		preparedCards = append(preparedCards, card.ToCard())
 	}
 	if !force {
@@ -26,7 +26,7 @@ func PrepareDatabase(source string, database string, force bool) {
 	}
 }
 
-func OpenJson(path string) []JsonCardData {
+func OpenJson(path string) *[]JsonCardData {
 	content, err := ioutil.ReadFile(path)
 	if err != nil {
 		log.Fatal("Error opening file: ", err)
@@ -36,5 +36,5 @@ func OpenJson(path string) []JsonCardData {
 	if err != nil {
 		log.Fatal("Error unmarshalling json: ", err)
 	}
-	return payload
+	return &payload
 }
